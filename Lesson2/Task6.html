@@ -1,0 +1,39 @@
+<script>
+    mathOperation(10, 2, 'division');
+
+    function mathOperation(arg1, arg2, operation) {
+
+        switch (operation) {
+            case 'addition':
+                return addition();
+
+            case 'substraction':
+                return substracion();
+
+            case 'multiplication':
+                return multiplication();
+
+            case 'division':
+                return division();
+
+        }
+
+
+        function addition() {
+            return alert(arg1 + arg2);
+        }
+
+        function substraction() {
+            return alert(arg1 - arg2);
+        }
+
+        function multiplication() {
+            return alert(arg1 * arg2);
+        }
+
+        function division() {
+            return alert(arg1 / arg2);
+        }
+    }
+
+</script>
