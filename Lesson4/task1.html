@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+   <header>
+       <input type="button" onclick="num2objClick()" value="запустить скрипт">
+   </header>
+    <script>
+        function num2objClick() {
+            //Создаем объект по умолчанию с нулями       
+            var obj = {
+                hundreds: 0,
+                ten: 0,
+                units: 0
+            };
+            //ВВодим значение переменной
+            var num = +prompt("Введите число от 0 до 999");
+            //Проверяем значение 
+            if (num < 0 || isNaN(num) === true) {
+                alert("Только число и больше 0");
+            } else if (num >= 1000) {
+                delete obj.units;
+                delete obj.ten;
+                delete obj.hundreds;
+                console.log(obj);
+                alert("Число больше 999 в консоль вывожу пустой объект")
+            } else num2obj(num); //если проверка пройдена передаю значение в функцию
+            //вычисляю количество разрядов
+            function num2obj(num) {
+                function countDigits(num) {
+                    for (var i = 0; num > 1; i++) {
+                        num /= 10;
+                    }
+                    return i;
+                }
+                //в зависимости от количества разрядов записываем значения в объект
+                switch (countDigits(num)) {
+                    case 3:
+                        obj.units = (num % 10); //остаток от деления на 10 соответствует единице
+                        obj.ten = (num - (num % 10)) / 10 % 10; // отбрасываются единицы, делится
+                        obj.hundreds = Math.floor(num / 100); // деление числа на 100 с округлением
+                        break;
+                    case 2:
+                        obj.units = num % 10;
+                        obj.ten = num - (num % 10) / 10;
+                        break;
+                    case (1 || 0):
+                        obj.units = num;
+                        break;
+                }
+                alert("Результат скрипта в консоли");
+                console.log(obj);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
